@@ -1,145 +1,174 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+// ---------------------------------------------------------------------------
+// Environment checks — the custom cursor and ambient effects only make sense on
+// a device with a real (mouse) pointer and where the user hasn't asked for
+// reduced motion. On touch screens they'd just get in the way.
+// ---------------------------------------------------------------------------
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
+const enableEffects = hasFinePointer && !prefersReducedMotion;
+
+// ---------------------------------------------------------------------------
+// Footer year
+// ---------------------------------------------------------------------------
+const yearEl = document.getElementById('year');
+if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+}
+
+// ---------------------------------------------------------------------------
+// Smooth scrolling for same-page anchor links
+// ---------------------------------------------------------------------------
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        }
     });
 });
 
-// Navbar scroll effect
+// ---------------------------------------------------------------------------
+// Hide navbar on scroll down, reveal on scroll up
+// ---------------------------------------------------------------------------
 const navbar = document.getElementById('navbar');
-let lastScrollY = window.scrollY;
+if (navbar) {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
 
-window.addEventListener('scroll', () => {
-    if (lastScrollY < window.scrollY) {
-        navbar.style.transform = 'translateY(-100%)'; // Hide navbar on scroll down
-    } else {
-        navbar.style.transform = 'translateY(0)'; // Show navbar on scroll up
-    }
-    lastScrollY = window.scrollY;
-});
-
-// Custom cursor functionality
-const cursor = document.createElement('div');
-cursor.className = 'cursor';
-document.body.appendChild(cursor);
-
-// Track mouse movement and add hover effect
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    cursor.classList.add('hover');
-});
-
-// Remove hover effect when mouse leaves the window
-document.addEventListener('mouseleave', () => {
-    cursor.classList.remove('hover');
-});
-
-// Add enhanced hover effect for interactive elements
-const interactiveElements = document.querySelectorAll('a, button, .social-link, .selfie, li.skill, .exp, .education, .me, #welcome-section');
-interactiveElements.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'scale(3)';
-        cursor.style.background = 'radial-gradient(circle, rgba(162, 89, 255, 0.9) 0%, rgba(162, 89, 255, 0.6) 30%, rgba(162, 89, 255, 0.3) 65%, transparent 100%)';
-        cursor.style.boxShadow = '0 0 15px rgba(162, 89, 255, 0.8), 0 0 30px rgba(162, 89, 255, 0.6), 0 0 45px rgba(162, 89, 255, 0.4)';
-    });
-    
-    el.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'scale(2)';
-        cursor.style.background = 'radial-gradient(circle, rgba(162, 89, 255, 0.8) 0%, rgba(162, 89, 255, 0.4) 30%, rgba(162, 89, 255, 0.2) 65%, transparent 100%)';
-        cursor.style.boxShadow = '0 0 10px rgba(162, 89, 255, 0.6), 0 0 20px rgba(162, 89, 255, 0.4), 0 0 30px rgba(162, 89, 255, 0.2)';
-    });
-});
-
-// Matrix light streaks functionality
-function createMatrixStreak() {
-    const streak = document.createElement('div');
-    streak.className = 'matrix-streak';
-    
-    // Randomly choose horizontal or vertical
-    const isVertical = Math.random() > 0.5;
-    if (isVertical) {
-        streak.classList.add('vertical');
-        // Align to vertical grid lines (every 50px)
-        const gridPosition = Math.floor(Math.random() * Math.ceil(window.innerWidth / 50)) * 50;
-        streak.style.left = gridPosition + 'px';
-        streak.style.top = '-100px';
-    } else {
-        // Align to horizontal grid lines (every 50px)
-        const gridPosition = Math.floor(Math.random() * Math.ceil(window.innerHeight / 50)) * 50;
-        streak.style.top = gridPosition + 'px';
-        streak.style.left = '-100px';
-    }
-    
-    // Random animation duration
-    const duration = 2 + Math.random() * 3;
-    streak.style.animationDuration = duration + 's';
-    
-    document.body.appendChild(streak);
-    
-    // Remove streak after animation
-    setTimeout(() => {
-        if (streak.parentNode) {
-            streak.parentNode.removeChild(streak);
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const current = window.scrollY;
+                if (current > lastScrollY && current > 100) {
+                    navbar.style.transform = 'translateY(-100%)';
+                } else {
+                    navbar.style.transform = 'translateY(0)';
+                }
+                lastScrollY = current;
+                ticking = false;
+            });
+            ticking = true;
         }
-    }, duration * 1000);
+    }, { passive: true });
 }
 
-// Create streaks at random intervals
-setInterval(createMatrixStreak, 200 + Math.random() * 300);
+// ---------------------------------------------------------------------------
+// Custom cursor
+// ---------------------------------------------------------------------------
+if (enableEffects) {
+    document.body.classList.add('cursor-enabled');
 
-// Click ripple effect functionality
-function createRipple(e) {
-    const ripple = document.createElement('div');
-    ripple.className = 'ripple';
-    
-    // Position ripple at exact cursor location and override CSS
-    ripple.style.left = e.clientX + 'px';
-    ripple.style.top = e.clientY + 'px';
-    ripple.style.transform = 'translate(-50%, -50%)';
-    
-    document.body.appendChild(ripple);
-    
-    // Remove ripple after animation
-    setTimeout(() => {
-        if (ripple.parentNode) {
-            ripple.parentNode.removeChild(ripple);
-        }
-    }, 1000);
-}
+    const cursor = document.createElement('div');
+    cursor.className = 'cursor';
+    cursor.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(cursor);
 
-// Add click event listener to document
-document.addEventListener('click', (e) => {
-    // Check if click target is a UI element
-    const isUIElement = e.target.closest('a, button, .social-link, .selfie, li.skill, .exp, .education, .me, #welcome-section, #navbar');
-    
-    // Only create ripple if clicking on background (not UI elements)
-    if (!isUIElement) {
-        createRipple(e);
-    }
-});
+    let cursorX = 0;
+    let cursorY = 0;
+    let rafId = null;
 
-// Add fade-in animation for elements
-const observerOptions = {
-    threshold: 0.1
-};
+    const renderCursor = () => {
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+        rafId = null;
+    };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
-            observer.unobserve(entry.target); // Stop observing once animation is triggered
+    document.addEventListener('mousemove', (e) => {
+        cursorX = e.clientX;
+        cursorY = e.clientY;
+        if (rafId === null) {
+            rafId = window.requestAnimationFrame(renderCursor);
         }
     });
-}, observerOptions);
 
-// Observe all sections and project tiles
-document.querySelectorAll('section, .project-tile').forEach(el => {
-    el.classList.add('hidden');
-    observer.observe(el);
-}); 
+    document.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    document.addEventListener('mouseenter', () => cursor.classList.remove('hover'));
 
+    // Grow the cursor only while over interactive elements (event delegation).
+    const interactiveSelector = 'a, button, .social-link, .selfie, li.skill, .project-card, .project-links a';
+    document.addEventListener('mouseover', (e) => {
+        if (e.target.closest(interactiveSelector)) {
+            cursor.classList.add('hover');
+        }
+    });
+    document.addEventListener('mouseout', (e) => {
+        if (e.target.closest(interactiveSelector)) {
+            cursor.classList.remove('hover');
+        }
+    });
 
+    // -----------------------------------------------------------------------
+    // Ambient "matrix" light streaks aligned to the background grid
+    // -----------------------------------------------------------------------
+    function createMatrixStreak() {
+        if (document.hidden) return; // don't animate an unfocused tab
+        const streak = document.createElement('div');
+        streak.className = 'matrix-streak';
+
+        const isVertical = Math.random() > 0.5;
+        if (isVertical) {
+            streak.classList.add('vertical');
+            const gridPosition = Math.floor(Math.random() * Math.ceil(window.innerWidth / 50)) * 50;
+            streak.style.left = gridPosition + 'px';
+            streak.style.top = '-100px';
+        } else {
+            const gridPosition = Math.floor(Math.random() * Math.ceil(window.innerHeight / 50)) * 50;
+            streak.style.top = gridPosition + 'px';
+            streak.style.left = '-100px';
+        }
+
+        const duration = 2 + Math.random() * 3;
+        streak.style.animationDuration = duration + 's';
+        document.body.appendChild(streak);
+
+        streak.addEventListener('animationend', () => streak.remove());
+    }
+
+    // Spawn a streak on a relaxed cadence — light enough to stay smooth.
+    setInterval(createMatrixStreak, 600 + Math.random() * 400);
+
+    // -----------------------------------------------------------------------
+    // Click ripple on empty background
+    // -----------------------------------------------------------------------
+    function createRipple(e) {
+        const ripple = document.createElement('div');
+        ripple.className = 'ripple';
+        ripple.style.left = e.clientX + 'px';
+        ripple.style.top = e.clientY + 'px';
+        document.body.appendChild(ripple);
+        ripple.addEventListener('animationend', () => ripple.remove());
+    }
+
+    document.addEventListener('click', (e) => {
+        const isUIElement = e.target.closest(
+            'a, button, .social-link, .selfie, li.skill, .project-card, .exp, .education, .me, #welcome-section, #navbar'
+        );
+        if (!isUIElement) {
+            createRipple(e);
+        }
+    });
+}
+
+// ---------------------------------------------------------------------------
+// Reveal-on-scroll for sections and project cards
+// ---------------------------------------------------------------------------
+const revealTargets = document.querySelectorAll('section, .project-card');
+
+if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    revealTargets.forEach((el) => el.classList.add('fade-in'));
+} else {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    revealTargets.forEach((el) => {
+        el.classList.add('hidden');
+        observer.observe(el);
+    });
+}
