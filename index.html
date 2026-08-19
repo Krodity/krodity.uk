@@ -3,127 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthony Eldridge · Front End Developer</title>
+    <meta name="description" content="Portfolio of Anthony Eldridge, a front-end developer from London, KY who builds responsive, performant websites and tinkers with homelabs and networking.">
+    <meta name="author" content="Anthony Eldridge">
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Anthony Eldridge · Front End Developer">
+    <meta property="og:description" content="Front-end developer from London, KY building responsive, performant websites.">
+    <meta property="og:url" content="https://krodity.uk">
+    <meta property="og:image" content="https://krodity.uk/misc/selfie.JPG">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="icon" type="image/svg+xml" href="misc/favicon.svg">
+    <link rel="preload" href="misc/LEMONMILK-MediumItalic.otf" as="font" type="font/otf" crossorigin>
     <link rel="stylesheet" href="styles.css">
-    <title>Anthony's Portfolio</title>
-    
 </head>
 <body>
-    
-    <div id="spacer"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    
-    <nav id="navbar">
+    <nav id="navbar" aria-label="Primary">
         <a href="#welcome-section">Welcome</a>
-        <a id="profile-link" href="https://github.com/krodity" target="_blank">GitHub Profile</a>
-        <a href="projects.html">Ongoing Projects</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="projects.html">Projects</a>
+        <a id="profile-link" href="https://github.com/krodity" target="_blank" rel="noopener">GitHub</a>
     </nav>
-    <section id="welcome-section">
-        <img class="selfie" src="misc/selfie.JPG" alt="Profile Picture">
-        <div class="welcome">
-            <h1 class="welcome-text1">Anthony Eldridge <span class="span1">|</span> <span class="DevSpan">Front End Developer</span></h1>
-            <h1 class="welcome-text2">London, Ky</h1>
-        </div>
-        <div class="links">
-            <a href="https://krodity.uk" target="_blank" class="social-link">Website</a>
-            <a href="https://freecodecamp.com/Krodity" target="_blank" class="social-link">FreeCodeCamp</a>
-            <a href="https://www.freecodecamp.org/certification/Krodity/responsive-web-design" target="_blank" class="social-link">Web Design Cert</a>
-        </div>
-    </section>
 
-    <div id="spacer">
-
-    </div>
-
-    <section class="me">
-       <div>
-        <h class="about">About Me</h> 
-        <p class="about-par"><span class="about-text">Hello, and thanks for checking out my portfolio. My name is Anthony. I’m a front-end developer who likes working with computers and figuring things out. I got into coding because I enjoy it and wanted to build a career around something I care about. Getting to work with computers every day is something I really appreciate.</span></p>
-        </div>
-       <div class="skills">
-        <h class="skill-header">Skills</h>
-        <ul class="skill-list dotted-skills">
-            <div class="skill-row1">
-                <li class="skill">Responsive & Mobile-First Design</li>
-                <li class="skill">JavaScript</li>
-                <li class="skill">HTML & CSS</li>
-                <li class="skill">Network Infrastructure</li>
-                <li class="skill">Homelab</li>
-                <li class="skill">Technical Support</li>
-                <li class="skill">Web Performance Optimization</li>
-                <li class="skill">Data Entry</li>
-                <li class="skill">Customer Support</li>
-                <li class="skill">Leadership</li>
+    <main id="main">
+        <section id="welcome-section">
+            <img class="selfie" src="misc/selfie.JPG" alt="Portrait of Anthony Eldridge" width="300" height="300">
+            <div class="welcome">
+                <h1 class="welcome-text1">Anthony Eldridge <span class="span1">|</span> <span class="DevSpan">Front End Developer</span></h1>
+                <p class="welcome-text2">London, KY</p>
             </div>
-                <div class="skill-row2">
-                <li class="skill">Git, Github</li>
-                <li class="skill">Docker</li>
-                <li class="skill">Code Optimization and Refactoring</li>
-                <li class="skill">Problem-solving & Debugging</li>
-                <li class="skill">Attention to Detail</li>
-                <li class="skill">Jira</li>
-                <li class="skill">Agile Methodologies</li>
-                <li class="skill">Team Collaboration</li>
-                <li class="skill">Project Management</li>
-                <li class="skill">Data Management</li>
-                
+            <div class="links">
+                <a href="https://krodity.uk" target="_blank" rel="noopener" class="social-link">Website</a>
+                <a href="https://freecodecamp.com/Krodity" target="_blank" rel="noopener" class="social-link">FreeCodeCamp</a>
+                <a href="https://www.freecodecamp.org/certification/Krodity/responsive-web-design" target="_blank" rel="noopener" class="social-link">Web Design Cert</a>
             </div>
-            <div class="skill-row3">
-                <li class="skill">Time Management</li>
-                <li class="skill">Communication</li>
-                <li class="skill">Adaptability</li>
-                <li class="skill">Critical Thinking</li>
-                <li class="skill">Creativity</li>
-                <li class="skill">Self-motivated</li>
-                <li class="skill">Fast Learner</li>
-                <li class="skill">Team Player</li>
-                <li class="skill">Research</li>
-                <li class="skill">Data Analysis</li>
-                <li class="skill">Data Visualization</li>
-                
+        </section>
+
+        <section id="about" class="me">
+            <div>
+                <h2 class="about">About Me</h2>
+                <p class="about-par"><span class="about-text">Hello, and thanks for checking out my portfolio. My name is Anthony. I&rsquo;m a front-end developer who likes working with computers and figuring things out. I got into coding because I enjoy it and wanted to build a career around something I care about. Getting to work with computers every day is something I really appreciate.</span></p>
             </div>
-            
-        </ul>
-       </div>
-    </section>
+            <div class="skills">
+                <h2 class="skill-header">Skills</h2>
+                <ul class="skill-list">
+                    <li class="skill">Responsive &amp; Mobile-First Design</li>
+                    <li class="skill">JavaScript</li>
+                    <li class="skill">HTML &amp; CSS</li>
+                    <li class="skill">Network Infrastructure</li>
+                    <li class="skill">Homelab</li>
+                    <li class="skill">Technical Support</li>
+                    <li class="skill">Web Performance Optimization</li>
+                    <li class="skill">Data Entry</li>
+                    <li class="skill">Customer Support</li>
+                    <li class="skill">Leadership</li>
+                    <li class="skill">Git &amp; GitHub</li>
+                    <li class="skill">Docker</li>
+                    <li class="skill">Code Optimization &amp; Refactoring</li>
+                    <li class="skill">Problem-solving &amp; Debugging</li>
+                    <li class="skill">Attention to Detail</li>
+                    <li class="skill">Jira</li>
+                    <li class="skill">Agile Methodologies</li>
+                    <li class="skill">Team Collaboration</li>
+                    <li class="skill">Project Management</li>
+                    <li class="skill">Data Management</li>
+                    <li class="skill">Time Management</li>
+                    <li class="skill">Communication</li>
+                    <li class="skill">Adaptability</li>
+                    <li class="skill">Critical Thinking</li>
+                    <li class="skill">Creativity</li>
+                    <li class="skill">Self-motivated</li>
+                    <li class="skill">Fast Learner</li>
+                    <li class="skill">Team Player</li>
+                    <li class="skill">Research</li>
+                    <li class="skill">Data Analysis</li>
+                    <li class="skill">Data Visualization</li>
+                </ul>
+            </div>
+        </section>
 
+        <section id="experience">
+            <div class="exp">
+                <h2 class="experience">Prior Experience</h2>
+                <ul class="jobs">
+                    <li>Contract IT Tech (2023 &ndash; Present)</li>
+                    <li>Data Entry Clerk at Exela Technologies (2019 &ndash; 2020)</li>
+                    <li>Customer Service Representative at General Dynamics Information Technology (2015 &ndash; 2016)</li>
+                </ul>
+            </div>
+        </section>
 
-    <div id="spacer"></div>
-
-    
-    <section>
-        <div class="exp">
-
-        <h class="experience">Prior  Experience</h>
-        <p>
-            <ul class="jobs">
-
-                <li>Contract IT Tech (2023 - Present)</li>
-                <li>Data Entry Clerk at Exela Technologies (2019 - 2020)</li>
-                <li>Customer Service Representative at General Dynamics Information Technologies (2015 - 2016)</li>
-                
-                
-            </ul>
-        </p>
-        </div>
-    </section>
-
-
-    <div id="spacer"></div>
-
-    <section class="education">
-        <h class="education-header">Education</h>
-        <p>
+        <section class="education">
+            <h2 class="education-header">Education</h2>
             <ul class="education-list">
-                
-                <li>FreeCodeCamp - Responsive Web Design Certification (2024)</li>
-                <li>FreeCodeCamp - JavaScript Algorithms and Data Structures Certification (2025)</li>
-                <li>LCHS - High School Diploma (2015)</li>
-                <li>Somerset Community College - Computer Science (2017 - 2019)</li>
-
-                
+                <li>FreeCodeCamp &mdash; Responsive Web Design Certification (2024)</li>
+                <li>FreeCodeCamp &mdash; JavaScript Algorithms and Data Structures Certification (2025)</li>
+                <li>Somerset Community College &mdash; Computer Science (2017 &ndash; 2019)</li>
+                <li>LCHS &mdash; High School Diploma (2015)</li>
             </ul>
-        </p>
-    </section>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="year">2026</span> Anthony Eldridge</p>
+        <div class="footer-links">
+            <a href="https://github.com/krodity" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://krodity.uk" target="_blank" rel="noopener">krodity.uk</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 </html>

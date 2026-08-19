@@ -3,37 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects · Anthony Eldridge</title>
+    <meta name="description" content="Projects by Anthony Eldridge — web apps, Python tooling, and homelab experiments.">
+    <link rel="icon" type="image/svg+xml" href="misc/favicon.svg">
+    <link rel="preload" href="misc/LEMONMILK-MediumItalic.otf" as="font" type="font/otf" crossorigin>
     <link rel="stylesheet" href="styles.css">
-    <title>Ongoing Projects - Anthony's Portfolio</title>
 </head>
 <body>
-    <nav id="navbar">
+    <a class="skip-link" href="#projects-section">Skip to content</a>
+
+    <nav id="navbar" aria-label="Primary">
         <a href="index.html#welcome-section">Welcome</a>
-        <a id="profile-link" href="https://github.com/krodity" target="_blank">GitHub Profile</a>
-        <a href="projects.html">Ongoing Projects</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="projects.html" aria-current="page">Projects</a>
+        <a id="profile-link" href="https://github.com/krodity" target="_blank" rel="noopener">GitHub</a>
     </nav>
-    <section id="projects-section">
-        <h1 class="welcome-text">Actively Ongoing Projects</h1>
-        <div class="me">
-            <ul class="skill-list">
-                <li>
-                    <strong>Project Name 1</strong><br>
-                    <span>Description of the first ongoing project, its goals, and current status.</span>
-                </li>
-                <li>
-                    <strong>Project Name 2</strong><br>
-                    <span>Description of the second ongoing project, its goals, and current status.</span>
-                </li>
-                <!-- Add more projects as needed -->
-            </ul>
+
+    <main>
+        <section id="projects-section">
+            <header class="projects-header">
+                <h1 class="welcome-text1">Projects</h1>
+                <p class="projects-intro">A mix of web apps, Python tooling, and things I build to learn. Most of these live on my <a href="https://github.com/krodity" target="_blank" rel="noopener">GitHub</a>.</p>
+            </header>
+
+            <div class="project-grid">
+                <article class="project-card">
+                    <div class="project-card-top">
+                        <h2 class="project-title">Yap-A-Yap</h2>
+                        <span class="project-status live">Live</span>
+                    </div>
+                    <p class="project-desc">A simple static chat and call site put together for friends. Focused on a lightweight, no-friction way to hop into a room and talk.</p>
+                    <ul class="project-tags">
+                        <li>JavaScript</li>
+                        <li>WebRTC</li>
+                        <li>Static site</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/krodity/Yap-A-Yap" target="_blank" rel="noopener">View code</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-card-top">
+                        <h2 class="project-title">Gyro-Mouse</h2>
+                        <span class="project-status active">Active</span>
+                    </div>
+                    <p class="project-desc">Converts OpenTrack UDP output into mouse movement so head-tracking hardware can drive the cursor in games that have no native support.</p>
+                    <ul class="project-tags">
+                        <li>Python</li>
+                        <li>OpenTrack</li>
+                        <li>Input mapping</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/krodity/Gyro-Mouse" target="_blank" rel="noopener">View code</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-card-top">
+                        <h2 class="project-title">Python Scripts</h2>
+                        <span class="project-status active">Ongoing</span>
+                    </div>
+                    <p class="project-desc">A growing collection of personal utility scripts — small automations and helpers I&rsquo;ve written and shared for anyone who finds them useful.</p>
+                    <ul class="project-tags">
+                        <li>Python</li>
+                        <li>Automation</li>
+                        <li>CLI</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/krodity/Python-Scripts" target="_blank" rel="noopener">View code</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-card-top">
+                        <h2 class="project-title">This Portfolio</h2>
+                        <span class="project-status live">Live</span>
+                    </div>
+                    <p class="project-desc">The site you&rsquo;re on now — hand-built with vanilla HTML, CSS, and JavaScript. A playground for animation, custom cursors, and layout ideas.</p>
+                    <ul class="project-tags">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/krodity/krodity.uk" target="_blank" rel="noopener">View code</a>
+                        <a href="https://krodity.uk" target="_blank" rel="noopener">Visit site</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-card-top">
+                        <h2 class="project-title">FreeCodeCamp Projects</h2>
+                        <span class="project-status active">Ongoing</span>
+                    </div>
+                    <p class="project-desc">A collection of full-stack learning projects built while earning my FreeCodeCamp certifications — from responsive layouts to JavaScript algorithms.</p>
+                    <ul class="project-tags">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/krodity/FreeCodeCamp-Projects" target="_blank" rel="noopener">View code</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-card-top">
+                        <h2 class="project-title">Homelab</h2>
+                        <span class="project-status active">Ongoing</span>
+                    </div>
+                    <p class="project-desc">An always-evolving self-hosted setup — Docker services, networking, and infrastructure I run and maintain to keep learning how things work under the hood.</p>
+                    <ul class="project-tags">
+                        <li>Docker</li>
+                        <li>Networking</li>
+                        <li>Linux</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/krodity" target="_blank" rel="noopener">GitHub profile</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="year">2026</span> Anthony Eldridge</p>
+        <div class="footer-links">
+            <a href="https://github.com/krodity" target="_blank" rel="noopener">GitHub</a>
+            <a href="index.html">Home</a>
         </div>
-    </section>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
-
-<div class="under-construction">
-    <h1>Under Construction</h1>
-    <p>This page is currently under construction. Please check back soon for updates.</p>
-</div>
-
-<script src="script.js"></script>
-</html> 
+</html>
